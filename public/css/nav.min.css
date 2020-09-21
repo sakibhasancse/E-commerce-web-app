@@ -1,0 +1,80 @@
+.progress-sm {
+    height: 0.5rem;
+  }
+  .rotate-15 {
+    -webkit-transform: rotate(15deg);
+    transform: rotate(15deg);
+  }
+  .rotate-n-15 {
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+  }
+  .dropdown .dropdown-menu {
+    font-size: 0.85rem;
+    -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+  }
+  .dropdown .dropdown-menu .dropdown-header {
+    font-weight: 800;
+    font-size: 0.65rem;
+    color: #b7b9cc;
+  }
+  .dropdown.no-arrow .dropdown-toggle::after {
+    display: none;
+  }
+  .sidebar .nav-item.dropdown .dropdown-toggle::after,
+  .topbar .nav-item.dropdown .dropdown-toggle::after {
+    width: 1rem;
+    text-align: center;
+    float: right;
+    vertical-align: 0;
+    border: 0;
+    font-weight: 900;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+  }
+  .sidebar .nav-item.dropdown.show .dropdown-toggle::after,
+  .topbar .nav-item.dropdown.show .dropdown-toggle::after {
+    content: "\f107";
+  }
+  .sidebar .nav-item .nav-link,
+  .topbar .nav-item .nav-link {
+    position: relative !important;
+  }
+  #itembadge{
+    position: absolute !important;
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    -webkit-transform-origin: top right;
+    transform-origin: top right;
+    right: 0.25rem;
+    margin-top: -0.25rem;
+  }
+  .sidebar .nav-item .nav-link .badge-counter22,
+  .topbar .nav-item .nav-link .badge-counter22 {
+    position: absolute !important;
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    -webkit-transform-origin: top right;
+    transform-origin: top right;
+    right: 0.25rem;
+    margin-top: -0.25rem;
+  }
+  .sidebar .nav-item .nav-link .img-profile,
+  .topbar .nav-item .nav-link .img-profile {
+    height: 2rem;
+    width: 2rem;
+    border: 1px solid #fafafa;
+  }
+  .topbar {
+    height: 4.375rem;
+    z-index: 2;
+    -webkit-box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+  }
+  .topbar #sidebarToggleTop {
+    height: 2.5rem;
+    width: 2.5rem;
+    -webkit-box-shadow: 0 0 !important;
+    box-shadow: 0 0 !important;
+  }

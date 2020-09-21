@@ -1,0 +1,56 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        <form class="login-form" action="/signup" method="POST" novalidate>
+            <div class="form-controls">
+                <label for="name">Name</label>
+                <input
+                class="<%=validationError.find(e=> e.param === 'name')?'invalid' : '' %> " 
+                type="text" name="name" id="name" value="<%=oldInput.name%>">
+            </div>
+            <div class="form-controls">
+                <label for="phone">Phone Number</label>
+                <input
+                class="<%=validationError.find(e=> e.param === 'phone')?'invalid' : '' %> " 
+                type="text" name="phone" id="phone" value="<%=oldInput.phone%>">
+            </div>
+            <div class="form-controls">
+                <label for="name">Address</label>
+                <input
+                class="<%=validationError.find(e=> e.param === 'address')?'invalid' : '' %> " 
+                type="text" name="address" id="address" value="<%=oldInput.address%>">
+            </div>
+            <div class="form-controls">
+                <label for="name">Address And Zip</label>
+                <input
+                class="<%=validationError.find(e=> e.param === 'zip')?'invalid' : '' %> " 
+                type="text" name="zip" id="zip" value="<%=oldInput.zip%>">
+            </div>
+            
+            <div class="form-controls">
+                <label for="email">E-Mail</label>
+    
+                <input type="email" class="<%=validationError.find(e=> e.param === 'email')?'invalid' : '' %> " name="email" id="email" value="<%=oldInput.email%>" >
+            </div>
+            <div class="form-controls">
+                <label for="password">Password</label>
+                <input type="password" class="<%=validationError.find(e=> e.param === 'password')?'invalid' : '' %> " name="password" id="password" value="<%=oldInput.password%>">
+            </div>
+            <div class="form-controls">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" name="confirmPassword" class="<%=validationError.find(e=> e.param === 'confirmPassword')?'invalid' : '' %> "  id="confirmPassword" value="<%=oldInput.confirmPassword%>">
+            </div>
+            <input type="hidden" name="_csrf" value="<%=csrfTokenss %>">
+            <button class="btns" type="submit">Signup</button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

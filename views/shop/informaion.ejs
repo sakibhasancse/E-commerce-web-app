@@ -1,0 +1,133 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/cart.css">
+
+   
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+      
+
+
+  <!--Main layout-->
+  <main >
+
+    </ul> -->
+    <div class="container wow fadeIn">
+
+
+      <!-- Heading -->
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-8 mb-4">
+
+          <!--Card-->
+          <div class="card">
+              <div id="charge-error" class="alert alert-danger" hidden>
+                  
+              </div>
+
+            <!--Card content-->
+            <form action="/addInformaino" method="POST" class="card-body" id="cheakout-form">
+
+              <!--Grid row-->
+              <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+
+                  <!--firstName-->
+                  <div class="md-form ">
+                      <label for="firstName" class="">First name</label>
+                    <input type="text" id="firstName" name="name" class="form-control">
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+            
+
+              <!--email-->
+              <div class="md-form mb-5">
+                  <label for="email" class="">Email</label>
+                <input type="email" id="email" class="form-control" name="email" placeholder="youremail@example.com">
+            </div>
+     <!--email-->
+     <div class="md-form mb-5">
+      <label for="number" class="">Phone Number</label>
+    <input type="text" id="email" class="form-control" name="phone">
+</div>
+
+              <!--address-->
+              <div class="md-form mb-5">
+                  <label for="address" class="">Address</label>
+                <input type="text" id="address" class="form-control" name="adress" placeholder="1234 Main St">
+              </div>
+
+              <!--address-2-->
+              <div class="md-form mb-5">
+                  <label for="address-2" class="">Address 2 (optional)</label>
+                <input type="text" id="address-2" class="form-control" name="adress2" placeholder="Apartment or suite">
+              </div>
+
+              <!--Grid row-->
+              <div class="row">
+
+            
+                <!--Grid column-->
+              
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                  <label for="zip">Zip</label>
+                  <input type="text" class="form-control " name="zipcode" id="zip" placeholder="" >
+                  <div class="invalid-feedback">
+                    Zip code required.
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+
+              <input type="hidden" name="_csrf" value="<%=csrfTokenss%>">
+          
+              <hr class="mb-4">
+              <button class="btn btn-primary btn-lg btn-block" id="order-btn" type="submit">Add</button>
+         
+
+            </form>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+ 
+
+
+  
+
+        </main>
+     
+        <%- include('../includes/end.ejs') %>
+        

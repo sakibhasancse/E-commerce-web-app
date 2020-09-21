@@ -1,0 +1,76 @@
+<%- include('../adminInclude/header.ejs')%>
+</head>
+<body id="page-top">
+    <div id="wrapper">
+<%- include('../adminInclude/sidenav.ejs') %>
+<%- include('../adminInclude/topnav.ejs') %>
+
+<div class="container-fluid" id="container-wrapper">
+    
+       
+    
+      <div class="col-xl-12 col-lg-7 mb-6">
+        <div class="card">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
+                <form action="/admin/order/delivary" method="POST">
+                    <input type="hidden" value="<%= order._id %>" name="orderId">
+                    <input type="hidden" name="_csrf" value="<%= csrfTokenss %>">
+                    <button class="m-0 float-right btn btn-danger btn-sm" type="submit">Delivery Now</button>
+                </form>
+         
+              </div>
+        </div>
+        
+         <div class="col-xl-12 col-lg-7 mt-3 mb-6">
+            <div  class="card">
+              <h2 class="text-center">Order Information</h2>
+              <h5 class="text-center">#<%=order._id %> </h5>
+              <div class="ml-2" style="font-size:small; ">
+                  <h6> Payment : True</h6>
+                  <div class="card text-center" >
+              <h4 class="text-center">User Details</h4>
+<hr>
+                      <h5>Name : <%=userInfo.name %> </h5>
+                      <h5>Email : <%=order.user.email %></h5>
+                      
+                  <h5>Phone : <%=userInfo.phone %></h5>
+                  <h5>Adress: <%=userInfo.address %></h5>
+                  <h5>Adress2: <%=userInfo.zip %></h5>
+
+                  </div>
+                  <% for (let orders of order.products) { %>
+                  <div class="card mt-3 ">
+                  <h4  class="text-center mt-1">Order Product</h4>
+                  <hr>
+                  <div class="ml-4 mb-5">
+
+                    
+                    <h5>Product Name :<%=orders.product.title%>  </h5>
+                    <h5>Product Price : $<%=orders.product.price%> </h5>
+                    <h5>Product Quntity : <%=orders.quantity %> </h5>
+                    <h5>product Id : #<%=orders.product._id %> </h5>
+                  </div>
+                  </div>
+                <% } %> 
+                  
+             
+                </div>
+
+            </div>
+          </div>
+          <!-- Message From Customer-->
+          
+        </div>
+</div>
+</div>
+     
+    </div>
+    <!--Row-->
+
+    <!-- Modal Logout -->
+   
+
+  </div>
+<%- include('../adminInclude/footer.ejs') %>
+

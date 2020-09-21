@@ -1,0 +1,43 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+<div class="container">
+
+    <div class="font-weight-light text-center text-lg-center mt-4 mb-0">         
+        <img src="/img/JPG.jpg" width="410" height="255">
+       
+        
+        </div>
+ </div>
+
+
+   
+    <main>
+        <hr >
+        <% if (cetagory.length > 0) { %>
+            <div class="grid">
+                <% for (let cat of cetagory) { %>
+                    <article class="card product-item">
+                        <div class="card__image">
+                            <img src="<%= cat.imageUrl %>"
+                            alt="<%= cat.title %>">
+                        </div>
+                         <header class="card__header">
+                           <h1 class="product__title"><%= cat.title %></h1>
+                      </header>
+                    
+                    </article>
+                <% } %>
+            </div>
+         
+        <% } else { %>
+            <h1>No Products Found!</h1>
+        <% } %>
+    </main>
+
+
+<%- include('../includes/end.ejs') %>

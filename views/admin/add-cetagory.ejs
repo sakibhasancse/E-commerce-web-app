@@ -1,0 +1,67 @@
+<%- include('../adminInclude/header.ejs')%>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+<body id="page-top">
+    <div id="wrapper">
+<%- include('../adminInclude/sidenav.ejs') %>
+<%- include('../adminInclude/topnav.ejs') %>
+
+    <main>
+    <form class="product-form" action="/admin/<%if(editing){%>edit-cetagory<% }else{%>add-cetagory<% } %>"method="POST">
+            <div class="form-controls">
+                <label for="title">Title</label>
+                <input type="text" name="title" value="<% if (editing) { %><%= cetagory.title %><% } %>" id="title">
+            </div>
+            <div class="form-controls">
+                <label for="imageUrl">Image URL</label>
+                <input type="text" name="imageUrl" value="<% if (editing) { %><%= cetagory.imageUrl %><% } %>" id="imageUrl">
+            </div>
+            <% if(editing){ %>
+                <input type="hidden"  value="<%=cetagory._id%>" name="catId">
+            <% } %>  
+
+            <input type="hidden" name="_csrf" value="<%= csrfTokenss  %>">
+            <button class="btn btn-primary" id="create-cetagory" type="submit"><% if (editing) { %>Update Cetagory<% } else { %>Add Cetagory<% } %></button>
+        </form>
+    </main>
+
+    <% if (!editing) {%> 
+    <hr>
+
+    <main>
+        <% if (cetagory.length > 0) { %>
+            <div class="grid">
+                <% for (let cat of cetagory) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title">
+                                <%= cat.title %>
+                            </h1>
+                        </header>
+                        <div class="card__image">
+                            <img src="<%= cat.imageUrl %>" alt="<%= cat.title %>">
+                        </div>
+                        
+                        <div class="card__actions">
+                            <a href="/admin/edit-cetagory/<%= cat._id %>?edit=true" class="btn btn-success">Edit</a>
+                            <form action="/admin/delete-catagory" method="POST">
+                                <input type="hidden" value="<%= cat._id %>" name="catId">
+                                <input type="hidden" name="_csrf" value="<%= csrfTokenss  %>">
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+
+                        </div>
+                    </article>
+                    <% } %>
+            </div>
+                <% } else { %>
+                    <h1>No Products Found!</h1>
+                    <% } %>
+    </main>    
+
+            <% } %> 
+
+     <%- include('../adminInclude/footer.ejs') %>
+

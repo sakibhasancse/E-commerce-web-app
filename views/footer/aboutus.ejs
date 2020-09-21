@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+<div class="container">
+
+    <main class="centered">
+        <% if (about.length > 0) { %>
+            <div class="about-section" style="background-color:#dae0e5 ; padding-top: 20px; padding-bottom: 20px; margin-top: -20px;">
+                <!---<h1>About Us Page</h1>--->
+                <img src="/img/text0.JPG" width="250" height="40">
+                <p>At WiWa Artisan "We are Artisans"</p>
+                <% for (let cat of about) { %>
+                    <p><%= cat.description %> </p>
+                <% } %> 
+            </div>
+    
+        <div class="grid">
+            <% for (let cat of about) { %>
+            <article class="card product-item">
+                <div class="card__image">
+                    <img src="<%= cat.imageUrl %>" alt="<%= cat.title %>">
+                </div>
+                <header class="card__header">
+                    <h1 class="product__title"><%= cat.title %></h1>
+                </header>
+
+            </article>
+            <% } %>
+        </div>
+        <% } else { %>
+        <p>Not Found</p>
+        <% } %>
+
+
+
+
+
+    </main>
+    </div>
+    <%- include('../includes/end.ejs') %>

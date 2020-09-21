@@ -1,0 +1,124 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/cart.css">
+
+   
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+      
+
+
+  <!--Main layout-->
+  <main >
+    <!-- <ul class="cart__item-list text-center">
+        <li class="cart__item centered">
+        <h2 style="font-weight: 600;"  class="h2 "style="flex: auto !important;">Your Order Information</h2>
+    </li>
+      
+    </ul> -->
+    <div class="container ">
+
+
+      <!-- Heading -->
+
+      <!--Grid row-->
+      <div class="text-center  row ">
+
+        
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
+
+          <!-- Heading -->
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            
+          </h4>
+
+          <!-- Cart -->
+          <ul class="list-group mb-3 z-depth-1">
+            <% products.forEach(p => { %>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+              
+
+                <h6 class="my-0"><%= p.productId.title %></h6>
+                <small class="text-muted">Quantity: <%= p.quantity %></small>
+              </div>
+              <span class="text-muted">$<%= p.quantity * p.productId.price%></span>
+            </li>
+            <% }) %>
+           
+          
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total Price:$<%=totalSum%> </span>
+              <strong>$<%=totalSum%></strong>
+            </li>
+          </ul>
+          <!-- Cart -->
+
+          <!-- Promo code -->
+         <a  class="btn btn-primary btn-lg btn-block"  id="" href="/checkout/success" type="button">Order</a>
+          
+          <button class="btn btn-success btn-lg btn-block" id="order-btn" type="button"> Checkout with Order</button>
+         
+
+          <!-- Promo code -->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+ 
+
+
+  
+
+        </main>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+          var stripe = Stripe('pk_test_51GzBz9Et0TdqdJUHVrkaopjzmzdx2A2IRrJndc7MoaqoZy0y4k06WpHh0H74UaBSpsgLyMvFMWVeCcG01TYtGV6h00XOAuqoVM');
+           var orderbtn =document.getElementById('order-btn')
+           orderbtn.addEventListener('click',function () {
+             stripe.redirectToCheckout({
+              sessionId: '<%=sessionId%>'
+    
+             })
+             
+           })
+        </script>
+        <script src="/js/checkout.js"></script>
+        <!-- <script>
+            const { response } = require("express");
+
+Stripe('pk_test_51GzBz9Et0TdqdJUHVrkaopjzmzdx2A2IRrJndc7MoaqoZy0y4k06WpHh0H74UaBSpsgLyMvFMWVeCcG01TYtGV6h00XOAuqoVM');
+var $form = $('#cheakout-form')
+$form.submit(function (event) {
+    $('#charge-error').addClass('hidden');
+
+    $form.find('button').prop('disabled', true);
+    Stripe.card.createToken({
+        number:$('#cc-number').val(),
+        cvc:$('#cc-cvv').val(),
+        exp_month:$('#cc-expiration').val(),
+        name:$('#cc-name').val(),
+    }, stripeResponseHandler)
+    return false;
+    function stripeResponseHandler(res) {
+        if (response.error) {
+            $('#charge-error').text(response.error.message);
+            $('#charge-error').removeClass('hidden');
+            $form.find('button').prop('disabled',false)
+        } else {
+            var token = response.id
+            $form.append($('<input type="hidden" name="stripeToken" />'.val(token)))
+            FormData.length(0).submit()
+        }
+    }
+})
+        </script> -->
+        <%- include('../includes/end.ejs') %>
+        

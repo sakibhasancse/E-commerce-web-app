@@ -1,0 +1,78 @@
+<%- include('../adminInclude/header.ejs')%>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+
+</head>
+    <body id="page-top">
+        <div id="wrapper">
+    <%- include('../adminInclude/sidenav.ejs') %>
+    <%- include('../adminInclude/topnav.ejs') %>
+
+    <main>
+    <form class="product-form" action="/admin/<%if(editing){%>edit-about<%}else{%>add-about<% } %>" method="POST">
+        <div class="form-controls">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" placeholder="if Your no need description , don't input description" rows="5"><% if (editing) { %><%=about.description %><% } %></textarea>
+        </div>
+            <div class="form-controls">
+                <label for="title">Title</label>
+                <input type="text" name="title" value="<% if (editing) { %><%=about.title %><% } %>" id="title">
+            </div>
+            <div class="form-controls">
+                <label for="imageUrl">Image URL</label>
+                <input type="text" name="imageUrl" value="<% if (editing) { %><%=about.imageUrl %><% } %>" id="imageUrl">
+            </div>
+
+            <% if(about){ %>
+                <input type="hidden"  value="<%=about._id%>" name="aboutId">
+            <% } %>  
+
+            <input type="hidden" name="_csrf" value="<%= csrfTokenss  %>">
+            <button class="btn btn-primary" id="create-cetagory" type="submit"><% if (editing) { %>Update About<% } else { %>Add About<% } %></button>
+        </form>
+    </main>
+
+    <% if (!editing) {%> 
+    <hr>
+    <div class="container">
+        <% for (let cat of about) { %>
+            <p><%=cat.description %></p>
+            <% } %> 
+    </div>
+   
+    <main>
+
+        <% if (about.length > 0) { %>
+            <div class="grid">
+                <% for (let cat of about) { %>
+                    <article class="card product-item">
+                        <div class="card__image">
+                            <img src="<%=cat.imageUrl %>" alt="<%= cat.title %>">
+                        </div>
+                        <header class="card__header">
+                            <h1 class="product__title">
+                                <%=cat.title %>
+                            </h1>
+                        </header>
+                        <div class="card__actions">
+                            <a href="/admin/edit-about/<%= cat._id %>?edit=true" class="btn btn-success">Edit</a>
+                            <form action="/admin/delete-about" method="POST">
+                                <input type="hidden" value="<%= cat._id %>" name="aboutId">
+                                <input type="hidden" name="_csrf" value="<%= csrfTokenss  %>">
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+
+                        </div>
+                    </article>
+                    <% } %>
+            </div>
+                <% } else { %>
+                    <h1>No Products Found!</h1>
+                    <% } %>
+    </main>    
+
+            <% } %> 
+
+            <%- include('../adminInclude/footer.ejs') %>
+

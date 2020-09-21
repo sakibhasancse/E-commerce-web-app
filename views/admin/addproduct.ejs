@@ -1,0 +1,114 @@
+<%- include('../adminInclude/header.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body id="page-top">
+    <div id="wrapper">
+<%- include('../adminInclude/sidenav.ejs') %>
+<%- include('../adminInclude/topnav.ejs') %>
+
+<main>
+    <% if (errorMessage) { %>
+        <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        <form class="product-form" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>/?_csrf=<%=csrfTokenss%>" method="POST" enctype="multipart/form-data">
+
+            <div class="form-controls">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" value="<% if (editing || hasError) { %><%= product.title %><% } %>">
+            </div>
+            
+            <div class="form-controls">
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price" step="0.01" value="<% if (editing  || hasError) { %><%= product.price %><% } %>">
+            </div>
+               
+            <div class="form-controls">
+                <label for="size">Size</label>
+                <input type="text" placeholder="if Product is no size then skip this fild" name="size" id="size" value="<% if (editing  || hasError) { %><%= product.size %><% } %>">
+            </div>
+            
+            
+            <% if (!editing) { %>
+                
+
+                <div class="form-controls">
+                    <label for="price">Cetagory</label>
+                    <select name="accessories" id="accessories">
+                <% for (let cat of accessories){ %> 
+                    <option value="<%=cat.slug%>"><%=cat.title%></option>
+                    <% } %> 
+                </select>
+            </div>
+            
+            <% } %>
+            <div class="form-controls">
+                <label for="image">Image</label>
+                <input type="file" name="image"  id="imgload" >
+                
+                
+                <img  src="#" id="imgshow" style="margin: 20px;">
+                
+            </div>
+            <br>
+        <div class="form-controls">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" rows="5"><% if (editing || hasError) { %><%= product.description %><% } %></textarea>
+        </div>
+        <% if (editing) { %>
+            <input type="hidden" value="<%= product._id %>" name="productId">
+        <% } %>
+        <div class="form-controls">
+        <div class="fallback">
+            <div class="file-upload-wrapper" style="background-color: aliceblue;">
+                <label for="description">Choice Multipale photo for Slider </label>
+                <input type="file" id="input-file-now" name="image" class="file-upload"  />
+                <input type="file" id="input-file-now" name="image" class="file-upload"  />
+                <input type="file" id="input-file-now" name="image" class="file-upload"  />
+          
+            </div>
+            
+        </div>
+        <br>
+        <!-- <div class="fallback">
+            <div class="file-upload-wrapper">
+                <label for="description">Choice Multipale photo for Slider </label>
+                <input type="file" id="input-file-now" name="image" class="file-upload" multiple />
+            </div>
+            
+        </div> <div class="fallback">
+            <div class="file-upload-wrapper">
+                <label for="description">Choice Multipale photo for Slider </label>
+                <input type="file" id="input-file-now" name="image" class="file-upload" multiple />
+            </div>
+            
+        </div> -->
+        
+        <button class="btn btn-primary" type="submit"><% if (editing) { %>Update Product<% } else { %>Add Product<% } %></button>
+    </form>
+    <script>
+        
+        function readUrl(input) {
+                if(input.files && input.files[0]){
+                    var reader = new FileReader();
+                    reader.onload = function(res){
+                        $("#imgshow").attr('src',res.target.result).width(100).height(100);
+                    }
+                    
+                    reader.readAsDataURL(input.files[0]);
+                }
+                
+            }
+            $("#imgload").change(function(){
+                readUrl(this);
+            });
+        
+  </script>
+   
+</main>
+
+
+<%- include('../adminInclude/footer.ejs') %>
+

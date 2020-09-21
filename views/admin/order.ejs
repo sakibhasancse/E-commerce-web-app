@@ -1,0 +1,70 @@
+<%- include('../adminInclude/header.ejs')%>
+</head>
+<body id="page-top">
+    <div id="wrapper">
+<%- include('../adminInclude/sidenav.ejs') %>
+<%- include('../adminInclude/topnav.ejs') %>
+
+<div class="container-fluid" id="container-wrapper">
+    
+       
+      <!-- Invoice Example -->
+      <div class="col-xl-12 col-lg-7 mb-6">
+        <div class="card">
+        
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <% if(order.length >0){ %> 
+              <thead class="thead-light">
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+               
+                 
+                  <th>Status</th>
+                  
+                  <th>Action</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let orders of order) { %>
+
+                <tr>
+                  <td><a href="#"><%=orders.id%> </a></td>
+                  <td><%=orders.user.email %> </td>
+              
+ 
+                  <td> <%if(orders.delivery == true){%><span class="badge badge-success">Complite</span> <% }else{ %><span class="badge badge-info">Processing</span> <% } %> </td>
+                 
+                  <td><a href="/admin/order/<%=orders._id%>" class="btn btn-sm btn-primary">Detail</a></td>
+                  <td>
+                  <form action="/admin/order/delete" method="POST">
+                    <input type="hidden" value="<%= orders._id %>" name="orderId">
+                    <input type="hidden" name="_csrf" value="<%= csrfTokenss  %>">
+                    <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                </form>
+
+                  </td>
+                </tr>
+               
+            <% } %> 
+              </tbody>
+            <% }else{ %> 
+                <h2 class="text-center">! Order Not Found </h2>
+            <% } %> 
+            </table>
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+     
+    </div>
+    <!--Row-->
+
+    <!-- Modal Logout -->
+   
+
+  </div>
+<%- include('../adminInclude/footer.ejs') %>
+

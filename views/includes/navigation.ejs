@@ -1,0 +1,155 @@
+
+<div class="backdrop"></div>
+<header class="main-header shadow-sm p-3 mb-1 bg-white rounded">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item ">
+                <a class=" <%= path === '/' ? 'active' : '' %>"  href="/"><img class="imagess"src="/img/text0.JPG" width="150" height="20" ></a>
+            </li>
+            
+            <li class="main-header__item">
+                <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Products</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/travel' ? 'active' : '' %>" href="/travel">Travel</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/interior' ? 'active' : '' %>" href="/interior">Interior Design</a>
+            </li>
+    
+                <li class="main-header__item dropdown-toggle"   style="cursor:pointer" id="dropdownMenuButton" data-toggle="dropdown" >
+                    Shop
+            </button>
+            <div class="dropdown-menu" >
+                <a  href="/products" class="dropdown-item">Accessories</a>
+                <a class="dropdown-item" href="/">Home Decoration</a>
+                <a class="dropdown-item" href="/">Beauty Products</a>
+                
+            </div>
+            <% if (isAuthenticated) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Orders</a>
+                </li>
+                 
+            <% } %>
+        </ul>
+        <ul class="main-header__item-list">
+            <% if (!isAuthenticated) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/login' ? 'active' : '' %>" href="/login"  style=" border-radius: 4px; padding: 6px 20px; 
+                        
+                     
+    color: #252525!important;
+    border: 1px solid #252525;">Login</a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup"  style=" border-radius: 4px; padding: 6px 20px; background: #0080ff!important;
+                        color: #fff!important;
+                        border: 1px solid #0080ff; ">Signup</a>
+                </li>
+            <% } else { %>
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <a class="nav-link dropdown-toggle" style="margin-top: -5px;" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <a href="/cart">
+                          <i class="fas fa-shopping-cart fa-fw"></i>
+                          <span id="itembadge"class=" badge-counter22 badge badge-warning ">2</span>
+                      </a>
+                    </a>
+                   
+                    </div>
+                  </li>
+              
+                <div class="topbar-divider d-none d-sm-block"></div>
+                <li class="nav-item dropdown no-arrow  ">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img class="img-profile rounded-circle" src="/vandor/img/boy.png" style="max-width: 30px">
+                      <span class="ml-2 d-none d-lg-inline text-white small" style="color: black !important ;font-weight: 400;">Maman Ketoprak</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
+                      <a class="dropdown-item" href="#">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                      </a>
+                      <a class="dropdown-item" href="#">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Settings
+                      </a>
+                      
+                      <div class="dropdown-divider"></div>
+                   
+                 
+                     
+                     <form action="/logout" class="dropdown-item" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfTokenss %>">
+                            <button style="border: none;
+                             
+                            background: none;" type="submit"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout</button>
+                        </form>
+                   
+                    </div>
+                    
+                  </li>
+               
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/' ? 'active' : '' %>" href="/">Shop</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/products' ? 'active' : '' %>" href="/products">Products</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/travel' ? 'active' : '' %>" href="/travel">Travel</a>
+
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/interior' ? 'active' : '' %>" href="/interior">Interior Design</a>
+        </li>
+        <div class="dropdown mobile-nav__item">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Shop
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/products">Accessories</a>
+                <a class="dropdown-item" href="#">Home Decoration</a>
+                <a class="dropdown-item" href="#">Beauty Products</a>
+            </div>
+        </div>
+        <% if (isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/orders' ? 'active' : '' %>" href="/orders">Orders</a>
+            </li>
+          
+        <% } %>
+        <% if (!isAuthenticated) { %>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+            </li>
+            <li class="mobile-nav__item">
+                <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+            </li>
+        <% } else { %>
+            <li class="mobile-nav__item">
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfTokenss %>">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        <% } %>
+    </ul>
+</nav>
+

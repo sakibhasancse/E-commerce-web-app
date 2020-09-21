@@ -1,0 +1,60 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+    </head>
+
+    <body>
+
+
+
+
+        <%- include('../includes/navigation.ejs') %>
+
+      
+        <main class="centered">
+           
+            <h1><%= product.title %></h1>
+            <hr>
+            <div class="image">
+            <a href="/<%= product.image %> " data-fancybox="gallery" data-caption="Caption #1">
+                    <img src="/<%= product.image %>" alt="<%= product.title %> class=" image-responsive />
+
+                        </div>
+            <br>
+            <% if(product.images.imagesl ) {%> 
+            <div  class="images "  >
+            <a href="/<%=product.images.imagesl%> " data-fancybox="gallery" data-caption="Caption #2">
+                   
+                </a>
+     
+            </div>
+        <% } %> 
+            <br>
+            <% if(product.images.images2) {%> 
+
+            <div class="images">
+                <a href="/<%=product.images.images2%> " data-fancybox="gallery" data-caption="Caption #3">
+                </a>
+     
+            </div>
+            <% } %> 
+            <% if(product.images.images3){ %> 
+
+            <div class="images">
+                <a href="/<%=product.images.images3%> " data-fancybox="gallery" data-caption="Caption #4">
+                </a>
+     
+            </div>
+            <% } %>
+            <% if(product.size){ %> 
+            <h6>Size : -<%=product.size%> </h6> 
+        <% } %> 
+            <h2>$<%= product.price %></h2>
+            <p><%= product.description %></p>
+            <% if (isAuthenticated) { %>
+                <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+            <% } %>
+        </main>
+        <script src=" https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+       
+        <%- include('../includes/end.ejs') %>
