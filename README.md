@@ -1,5 +1,5 @@
-# nodejs_e-commer
-# Nodejs e-commers
+
+# E-commerce web app
 
 
 ## Getting started
@@ -22,11 +22,6 @@ This project will run on **NodeJs** using **MongoDB** as database. I had tried t
 
 ### Using Git (recommended)
 
-1.  Clone the project from github. Change "myproject" to your project name.
-
-```bash
-git clone https://github.com/SakibHasanCse/Nodejs-Rest-Api.git ./myproject
-```
 
 ### Using manual download ZIP
 
